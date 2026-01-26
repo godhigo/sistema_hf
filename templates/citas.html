@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Citas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{% include 'sidebar.html' %}
+
+<div class="main-content">
+    <div class="container-citas">
+
+        <!-- ======= CITAS DEL DÍA ======= -->
+        <div class="citas-hoy-container">
+            <h2>Citas del {{ fecha_actual }}</h2>
+
+            <div class="flechas-nav">
+                <form method="POST" action="{{ url_for('citas') }}" class="form-nav">
+                    <label for="fecha">Seleccionar fecha:</label>
+                    <input type="date" id="fecha" name="fecha" value="{{ fecha_actual }}" required>
+                    <button type="submit" class="btn-buscar">Ver fecha</button>
+                </form>
+            </div>
+
+            <div id="citas-lista" class="citas-grid">
+                {% if citas_dia %}
+                    {% for c in citas_dia %}
+                        <div class="cita-card">
+                            <h2>{{ c.nombre_cliente }}</h2>
+                            <p><strong>Empleado:</strong> {{ c.nombre_empleado }}</p>
+                            <p><strong>Servicio:</strong> {{ c.nombre_servicio }}</p>
+                            <p><strong>Hora:</strong> {{ c.hora }}</p>
+                            <!-- BOTÓN FINALIZAR CITA -->
+                            <form action="/finalizar_cita" method="POST" class="form-finalizar">
+                                <input type="hidden" name="id_cita" value="{{ c.id }}">
+                                <button type="submit" class="btn-finalizar">Finalizar</button>
+                            </form>
+                                <!-- Botón Editar -->
+                            <form action="/editar_cita" method="GET" class="form-editar">
+                                <input type="hidden" name="id" value="{{ c.id }}">
+                                <button type="submit" class="btn-editar">Editar</button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="sin-citas">No hay citas para esta fecha.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- ======= FORMULARIO PARA NUEVA CITA ======= -->
+        <div class="form-toggle">
+            <button id="btn-toggle-form" class="btn-success">Agregar Cita</button>
+        </div>
+
+        <div id="form-container" class="form-tabla-container" style="display:none;">
+            <div class="form-content">
+                <form method="post" action="/agregar_cita" class="form-clientes">
+                    <label>Cliente</label>
+                    <input list="lista-clientes" name="cliente" placeholder="Escribe o selecciona un cliente" required>
+                    <datalist id="lista-clientes">
+                        {% for c in clientes %}
+                            <option value="{{ c.nombre }}"></option>
+                        {% endfor %}
+                    </datalist>
+
+                    <label>Teléfono</label>
+                    <input type="text" name="telefono" placeholder="Número de teléfono" required>
+
+                    <label>Servicio</label>
+                    <select name="servicio" required>
+                        {% for s in servicios %}
+                            <option value="{{ s.id }}">{{ s.nombre_servicio }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label>Empleado</label>
+                    <select name="empleado" required>
+                        {% for e in empleados %}
+                            <option value="{{ e.id }}">{{ e.nombre }} ({{ e.especialidad }})</option>
+                        {% endfor %}
+                    </select>
+
+                    <label>Fecha</label>
+                    <input type="date" name="fecha" value="{{ fecha_actual }}" required>
+
+                    <label>Hora</label>
+                    <input type="time" name="hora" required>
+
+                    <button type="submit" class="btn-success">Guardar Cita</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const btnToggle = document.getElementById("btn-toggle-form");
+    const formContainer = document.getElementById("form-container");
+    btnToggle.addEventListener("click", () => {
+        formContainer.style.display = formContainer.style.display === "none" ? "block" : "none";
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+.ventas-container {
+    padding: 2rem;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+}
+
+.ventas-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.ventas-header h1 {
+    font-size: 2rem;
+    color: #0077ff;
+    margin-bottom: 0.3rem;
+}
+
+.ventas-resumen {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.resumen-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform .3s ease, box-shadow .3s ease;
+    min-width: 200px;
+}
+
+.resumen-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.resumen-card h2 {
+    color: #0077ff;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.ventas-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.ventas-tabla th, .ventas-tabla td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.ventas-tabla th {
+    background-color: #0077ff;
+    color: white;
+    font-weight: 600;
+}
+
+.ventas-tabla tr:hover {
+    background-color: #f5f6fa;
+}
+
+.sin-ventas {
+    text-align: center;
+    padding: 2rem;
+    color: #777;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+
+    .ventas-resumen {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.filtro-form {
+
+    width: 100%;
+    background: #fff;
+    padding: 1rem 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+

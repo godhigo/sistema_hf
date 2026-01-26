@@ -1,0 +1,21 @@
+{% if current_user.is_authenticated %}
+<div class="sidebar">
+    <div class="profile">
+        <a href="/">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVADXT1zqPqRq7KOsQc7utpgsTqinx64k_0w&s" alt="User">
+        </a>    
+        <h3>Healthy Feet</h3>
+    </div>
+
+    <div class="menu">
+        <a href="/empleados" class="{% if request.path == '/empleados' %}active{% endif %}">Empleados</a>
+        <a href="/clientes" class="{% if request.path == '/clientes' %}active{% endif %}">Clientes</a>
+        <a href="/ventas" class="{% if request.path == '/ventas' %}active{% endif %}">Ventas</a>
+        <a href="/citas" class="{% if request.path == '/citas' %}active{% endif %}">Citas</a>
+    </div>
+
+    <div class="logout">
+        <a href="/logout">Cerrar sesión</a>
+    </div>
+</div>
+{% endif %}

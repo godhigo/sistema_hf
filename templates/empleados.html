@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Empleados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{% include 'sidebar.html' %}
+
+<div class="main-content">
+    <div class="container-empleados">
+        <h1 class="title-empleados">Empleados</h1>
+
+        <div class="empleados-grid">
+            {% for e in empleados %}
+            <div class="empleado-card">
+
+                <img src="{{ url_for('static', filename='uploads/' ~ e.foto) }}" class="empleado-foto" alt="{{ e.nombre }}">
+
+                <h3>{{ e.nombre }}</h3>
+                <p><strong>Email:</strong> {{ e.email }}</p>
+                <p><strong>Teléfono:</strong> {{ e.telefono }}</p>
+                <p><strong>Especialidad:</strong> {{ e.especialidad }}</p>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

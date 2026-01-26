@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ventas.css') }}">
+    <script src="https://kit.fontawesome.com/a2e0e6b6c8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+{% include 'sidebar.html' %}
+
+<div class="main-content">
+    <form method="POST" class="filtro-form">
+        <label for="filtro">Mostrar ganancias por:</label>
+        <select name="filtro" id="filtro" onchange="mostrarCampoFiltro()">
+            <option value="dia" {% if filtro == 'dia' %}selected{% endif %}>Día</option>
+            <option value="semana" {% if filtro == 'semana' %}selected{% endif %}>Semana</option>
+            <option value="mes" {% if filtro == 'mes' %}selected{% endif %}>Mes</option>
+            <option value="ano" {% if filtro == 'ano' %}selected{% endif %}>Año</option>
+        </select>
+
+        <div id="campo-extra"></div>
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <script>
+    function mostrarCampoFiltro() {
+        const filtro = document.getElementById("filtro").value;
+        const campoExtra = document.getElementById("campo-extra");
+        campoExtra.innerHTML = "";
+
+        if (filtro === "dia") {
+            campoExtra.innerHTML = `<label>Selecciona el día:</label>
+            <input type="date" name="valor_filtro" required>`;
+        } else if (filtro === "semana") {
+            campoExtra.innerHTML = `<label>Selecciona la semana:</label>
+            <input type="week" name="valor_filtro" required>`;
+        } else if (filtro === "mes") {
+            campoExtra.innerHTML = `<label>Selecciona el mes:</label>
+            <input type="month" name="valor_filtro" required>`;
+        } else if (filtro === "ano") {
+            campoExtra.innerHTML = `<label>Selecciona el año:</label>
+            <input type="number" name="valor_filtro" min="2000" max="2100" placeholder="2025" required>`;
+        }
+    }
+
+    // mantener el campo visible al recargar
+    window.onload = mostrarCampoFiltro;
+    </script>
+
+    <div class="ventas-container">
+        <header class="ventas-header">
+            <h1><i class="fas fa-dollar-sign"></i> Ventas Registradas</h1>
+            <p>Historial de todas las citas completadas</p>
+        </header>
+
+        <section class="ventas-resumen">
+            <div class="resumen-card">
+                <h2>{{ ventas|length }}</h2>
+                <p>Total de ventas</p>
+            </div>
+            <div class="resumen-card">
+                <h2>${{ ventas|sum(attribute='total')|round(2) }}</h2>
+                <p>Ganancia total</p>
+            </div>
+        </section>
+
+        <section class="ventas-tabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Empleado</th>
+                        <th>Servicio</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venta in ventas %}
+                    <tr>
+                        <td>{{ venta.cliente }}</td>
+                        <td>{{ venta.empleado }}</td>
+                        <td>{{ venta.servicio }}</td>
+                        <td>{{ venta.fecha.strftime('%d/%m/%Y') }}</td>
+                        <td>${{ venta.total }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="sin-ventas">No hay ventas registradas aún.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+
+</body>
+</html>

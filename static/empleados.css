@@ -1,0 +1,67 @@
+/* empleados.css */
+
+/* Contenedor principal */
+.container-empleados {
+    height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título */
+.title-empleados {
+    text-align: center;
+    font-size: 36px;
+    color: #007bff;
+    padding: 20px;
+    margin-bottom: 70px;
+}
+
+/* Grid de tarjetas */
+.empleados-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Tarjeta individual */
+.empleado-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.empleado-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Foto del empleado */
+.empleado-foto {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Nombre */
+.empleado-card h3 {
+    font-size: 1.3rem;
+    color: #007bff; 
+    margin-bottom: 10px;
+}
+
+/* Datos */
+.empleado-card p {
+    font-size: 0.95rem;
+    color: #333;
+    margin: 4px 0;
+}

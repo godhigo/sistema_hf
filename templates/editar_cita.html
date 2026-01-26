@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cita</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="main-content">
+
+    {% include "sidebar.html" %}
+
+    <div class="contenido">
+
+        <h1 class="titulo-citas">Editar Cita</h1>
+
+        <form action="/actualizar_cita" method="POST" class="form-editar-cita">
+
+            <input type="hidden" name="id" value="{{ cita.id }}">
+
+            <label>Cliente:</label>
+            <select name="id_cliente" required>
+                {% for c in clientes %}
+                    <option value="{{ c.id }}" {% if c.id == cita.id_cliente %}selected{% endif %}>
+                        {{ c.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label>Servicio:</label>
+            <select name="id_servicio" required>
+                {% for s in servicios %}
+                    <option value="{{ s.id }}" {% if s.id == cita.id_servicio %}selected{% endif %}>
+                        {{ s.nombre_servicio }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label>Empleado:</label>
+            <select name="id_empleado" required>
+                {% for e in empleados %}
+                    <option value="{{ e.id }}" {% if e.id == cita.id_empleado %}selected{% endif %}>
+                        {{ e.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label>Fecha:</label>
+            <input type="date" name="fecha" value="{{ cita.fecha }}" required>
+
+            <label>Hora:</label>
+            <input type="time" name="hora" value="{{ cita.hora }}" required>
+
+            <button type="submit" class="btn-editar">Guardar Cambios</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

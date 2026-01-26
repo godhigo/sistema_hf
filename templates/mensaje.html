@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mensaje</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="msg-box">
+        <h2>{{ mensaje }}</h2>
+        <a class="btn-regresar" href="{{ regresar }}">Regresar</a>
+    </div>
+
+</body>
+</html>

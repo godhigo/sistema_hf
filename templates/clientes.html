@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    {% include 'sidebar.html' %}
+
+    <div class="main-content">
+        <div class="container-clientes">
+            <h1 class="title-clientes">Lista de Clientes</h1>
+
+            <form method="get" action="/clientes" class="search-form">
+                <input type="text" name="nombre" placeholder="Buscar por nombre" value="{{ filtro }}">
+                <button type="submit">Buscar</button>
+            </form>
+
+            <table class="tabla-clientes">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Historial de citas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.telefono }}</td>
+                        <td>
+                            {% if historial[cliente.id] %}
+                            <table class="historial">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Servicio</th>
+                                        <th>Empleado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cita in historial[cliente.id] %}
+                                    <tr>
+                                        <td>{{ cita.fecha }}</td>
+                                        <td>{{ cita.hora }}</td>
+                                        <td>{{ cita.nombre_servicio }}</td>
+                                        <td>{{ cita.empleado }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

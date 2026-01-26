@@ -1,0 +1,86 @@
+.container-clientes {
+    width: 90%;
+    margin: 50px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+.title-clientes {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+    color: #007bff;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.search-form input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.search-form button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-form button:hover {
+    background-color: #0056b3;
+}
+
+.tabla-clientes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-clientes th, .tabla-clientes td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.tabla-clientes th {
+    background-color: #007bff;
+    color: white;
+}
+
+.tabla-clientes tr:hover {
+    background-color: #f2f2f2;
+}
+
+.historial {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.historial th, .historial td {
+    padding: 6px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+}
+
+.historial th {
+    background-color: #007bff;
+    color: white;
+}
+
+.historial tr:hover {
+    background-color: #f2f2f2;
+}
+

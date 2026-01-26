@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('loader');
+        const dashboard = document.querySelector('.dashboard-container');
+        setTimeout(() => {
+            loader.classList.add('hide');
+            dashboard.classList.add('show');
+        }, 1000);
+    });
+    </script>
+</head>
+<body>
+
+{% include 'sidebar.html' %}
+
+<div class="main-content">
+    <div class="loader-container" id="loader">
+        <div class="loader-bar"></div>
+        <p>Cargando datos del día...</p>
+    </div>
+
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>¡Bienvenido!</h1>
+        </header>
+
+        <!-- CARDS -->
+        <section class="cards-grid">
+
+            <a href="/citas" class="card-link">
+                <div class="card">
+                    <i class="fas fa-calendar-check icon"></i>
+                    <h2>{{ citas_dia }}</h2>
+                    <p>Citas del día</p>
+                </div>
+            </a>
+
+            <a href="/clientes" class="card-link">
+                <div class="card">
+                    <i class="fas fa-users icon"></i>
+                    <h2>{{ clientes }}</h2>
+                    <p>Clientes registrados</p>
+                </div>
+            </a>
+
+            <a href="/empleados" class="card-link">
+                <div class="card">
+                    <i class="fas fa-user-md icon"></i>
+                    <h2>{{ empleados }}</h2>
+                    <p>Empleados activos</p>
+                </div>
+            </a>
+
+        </section>
+
+        <!-- GRÁFICAS -->
+        <section class="dashboard-charts">
+
+            <div class="chart-card">
+                <h3>Ventas últimos 7 días</h3>
+                <canvas id="ventasChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Servicios más vendidos</h3>
+                <canvas id="serviciosChart"></canvas>
+            </div>
+
+        </section>
+    </div>
+</div>
+
+<!-- SCRIPT DASHBOARD -->
+<script>
+fetch("/api/dashboard")
+  .then(res => res.json())
+  .then(data => {
+
+    // --------------------
+    // VENTAS POR DÍA
+    // --------------------
+    const ventasLabels = data.ventas_dias.map(v => v.dia);
+    const ventasData = data.ventas_dias.map(v => v.total);
+
+    new Chart(document.getElementById("ventasChart"), {
+        type: "line",
+        data: {
+            labels: ventasLabels,
+            datasets: [{
+                label: "Ventas ($)",
+                data: ventasData,
+                tension: 0.4,
+                fill: true
+            }]
+        }
+    });
+
+    // --------------------
+    // SERVICIOS MÁS VENDIDOS
+    // --------------------
+    const serviciosLabels = data.servicios.map(s => s.nombre_servicio);
+    const serviciosData = data.servicios.map(s => s.cantidad);
+
+    new Chart(document.getElementById("serviciosChart"), {
+        type: "bar",
+        data: {
+            labels: serviciosLabels,
+            datasets: [{
+                label: "Servicios vendidos",
+                data: serviciosData
+            }]
+        }
+    });
+
+  });
+</script>
+
+</body>
+</html>

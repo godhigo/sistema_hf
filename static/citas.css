@@ -1,0 +1,155 @@
+/* body {
+    background: #f5f7fb;
+    font-family: 'Poppins', sans-serif;
+} */
+
+/* ======= SECCIÓN DE CITAS ======= */
+.citas-hoy-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.citas-hoy-container h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.flechas-nav {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.citas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.cita-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+}
+.cita-card:hover {
+    transform: translateY(-3px);
+}
+
+/* ======= FORMULARIO ======= */
+.form-tabla-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-content {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+.form-clientes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-clientes label {
+    font-weight: 600;
+    color: #222;
+}
+
+.form-clientes input,
+.form-clientes select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.15);
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+    background: white;
+}
+
+.form-clientes input:focus,
+.form-clientes select:focus {
+    border-color: #1c558a;
+    box-shadow: 0 0 5px rgba(28, 85, 138, 0.3);
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+.btn-success:hover {
+    background: #219638;
+    transform: scale(1.03);
+}
+
+/* ======= BOTÓN AGREGAR ======= */
+.form-toggle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-toggle .btn-success {
+    background: #007bff;   /* ← COLOR NUEVO */
+}
+
+.form-toggle .btn-success:hover {
+    background: #0069d9;   /* ← HOVER NUEVO */
+}
+/* ======= BOTÓN FINALIZAR CITA ======= */
+.btn-finalizar {
+    width: 100%;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-finalizar:hover {
+    background: #e60000;
+    transform: scale(1.03);
+}
+
+.form-finalizar {
+    margin-top: 10px;
+}
+
+.btn-editar {
+    width: 100%;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-editar:hover {
+    background: #075fe4;
+    transform: scale(1.03);
+}

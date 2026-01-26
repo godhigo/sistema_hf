@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .form-container {
+            width: 350px;
+            margin: 80px auto;
+            padding: 25px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+        input, button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Iniciar Sesión</h2>
+
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <input type="email" name="email" placeholder="Correo electrónico" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    <p>¿No tienes cuenta? <a href="/signup">Regístrate</a></p>
+</div>
+
+</body>
+</html>

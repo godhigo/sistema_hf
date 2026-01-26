@@ -1,0 +1,17 @@
+@import url('sidebar.css');
+@import url('index.css');
+@import url('clientes.css');
+@import url('citas.css');
+@import url('empleados.css');
+@import url('ventas.css');
+@import url('mensaje.css');
+@import url('signup.css');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    background: #f5f7fa;
+}
+
+
