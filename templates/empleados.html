@@ -24,11 +24,43 @@
                 <p><strong>Teléfono:</strong> {{ e.telefono }}</p>
                 <p><strong>Especialidad:</strong> {{ e.especialidad }}</p>
                 
+                <!-- BOTÓN EDITAR -->
+                <button type="button" onclick="toggleEditForm('{{ e.id }}')">✏️</button>
+
+                <!-- FORMULARIO OCULTO -->
+                <div id="edit-form-{{ e.id }}" class="edit-form" style="display:none; margin-top:10px; border:1px solid #ccc; padding:10px; border-radius:8px;">
+                    <form action="/actualizar_empleado" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="{{ e.id }}">
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" value="{{ e.nombre }}" required>
+                        <label>Email:</label>
+                        <input type="email" name="email" value="{{ e.email }}" required>
+                        <label>Teléfono:</label>
+                        <input type="text" name="telefono" value="{{ e.telefono }}" required>
+                        <label>Especialidad:</label>
+                        <input type="text" name="especialidad" value="{{ e.especialidad }}" required>
+                        <label>Foto:</label>
+                        <input type="file" name="foto">
+                        <button type="submit">Guardar</button>
+                    </form>
+                </div>
+
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
+
+<script>
+function toggleEditForm(id) {
+    const form = document.getElementById('edit-form-' + id);
+    if (form.style.display === 'none') {
+        form.style.display = 'block';
+    } else {
+        form.style.display = 'none';
+    }
+}
+</script>
 
 </body>
 </html>

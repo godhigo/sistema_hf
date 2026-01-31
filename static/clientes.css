@@ -1,10 +1,14 @@
 .container-clientes {
-    width: 90%;
-    margin: 50px auto;
+    width: 95%;
     background: white;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 30px;
+
+    /* ¡Sube todo hasta arriba! */
+    position: relative;
+    top: -225px; /* ajusta el valor hasta que quede pegado al filtro o top */
+    margin: 0 auto; /* centrado horizontal */
 }
 
 .title-clientes {

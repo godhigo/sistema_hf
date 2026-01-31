@@ -2,6 +2,7 @@
     padding: 2rem;
     color: #333;
     font-family: 'Poppins', sans-serif;
+    margin-top: -200px;
 }
 
 .ventas-header {
@@ -96,10 +97,121 @@
     border-radius: 0.8rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     margin-bottom: 1.5rem;
-
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 }
+/* ======= FILTRO DE GANANCIAS ======= */
+.filtro-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px 25px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
 
+/* Label principal */
+.filtro-form label {
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+}
+
+/* Select */
+.filtro-form select {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.2);
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.filtro-form select:hover {
+    border-color: #007bff;
+}
+
+.filtro-form select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* Campo dinámico (fecha, semana, mes, año) */
+#campo-extra {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#campo-extra label {
+    font-weight: 500;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Inputs dinámicos */
+#campo-extra input {
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.2);
+    font-size: 14px;
+    background: white;
+    transition: 0.25s ease;
+}
+
+#campo-extra input:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2);
+}
+
+/* Botón Filtrar */
+.filtro-form button {
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.35);
+}
+
+.filtro-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(40, 167, 69, 0.45);
+}
+
+.filtro-form button:active {
+    transform: scale(0.97);
+}
+
+/* ======= FILTRO PEGADO ARRIBA REAL ======= */
+.filtro-form {
+    position: fixed;
+    top: 0;
+    left: 300px; /* ancho del sidebar */
+    width: calc(100% - 300px);
+    z-index: 999;
+
+    background: rgba(255, 255, 255, 0.98);
+    padding: 18px 25px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    border-radius: 0 0 18px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}

@@ -35,6 +35,7 @@
     box-shadow: 0 6px 18px rgba(0,0,0,0.15);
     padding: 20px;
     text-align: center;
+    position: relative; /* Para posicionar el botón de editar */
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -64,4 +65,67 @@
     font-size: 0.95rem;
     color: #333;
     margin: 4px 0;
+}
+
+/* ======= BOTÓN EDITAR ======= */
+.empleado-card button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.empleado-card button:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+/* ======= FORMULARIO OCULTO ======= */
+.edit-form {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    display: none; /* Oculto por defecto */
+    text-align: left;
+}
+
+.edit-form label {
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="email"],
+.edit-form input[type="file"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.2);
+    font-size: 0.95rem;
+}
+
+.edit-form button {
+    margin-top: 12px;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.edit-form button:hover {
+    background: #218838;
 }

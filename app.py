@@ -660,6 +660,43 @@ def server_error(e):
         regresar="/"
     ), 500
 
+@app.route('/actualizar_empleado', methods=['POST'])
+@login_required
+def actualizar_empleado():
+    id_empleado = request.form['id']
+    nombre = request.form['nombre']
+    email = request.form['email']
+    telefono = request.form['telefono']
+    especialidad = request.form['especialidad']
+    foto = request.files.get("foto")
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # Actualizar foto si hay
+    if foto and foto.filename:
+        extension = foto.filename.split(".")[-1]
+        filename = f"{uuid.uuid4()}.{extension}"
+        foto.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+        cursor.execute("""
+            UPDATE empleados
+            SET nombre=%s, email=%s, telefono=%s, especialidad=%s, foto=%s
+            WHERE id=%s
+        """, (nombre, email, telefono, especialidad, filename, id_empleado))
+    else:
+        cursor.execute("""
+            UPDATE empleados
+            SET nombre=%s, email=%s, telefono=%s, especialidad=%s
+            WHERE id=%s
+        """, (nombre, email, telefono, especialidad, id_empleado))
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return redirect("/empleados")
+
+
 
 if __name__ == '__main__':
     app.run()
